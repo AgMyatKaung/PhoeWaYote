@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://be0jak2iri7jm"]
+
+[sub_resource type="Theme" id="Theme_o28ql"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_right = 261.0
+offset_bottom = 27.0
+theme = SubResource("Theme_o28ql")
+value = 50.0

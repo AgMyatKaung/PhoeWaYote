@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvoc3fw6o18l0"]
+
+[ext_resource type="Texture2D" uid="uid://1a2r5ajbau81" path="res://Art/2 Guns/5 Bullets/10.png" id="1_0dunn"]
+[ext_resource type="Script" path="res://weapon/bullet1.gd" id="1_blj30"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u71an"]
+size = Vector2(4, 3.5)
+
+[node name="bullet1" type="CharacterBody2D"]
+script = ExtResource("1_blj30")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+rotation = -0.71733
+texture = ExtResource("1_0dunn")
+
+[node name="bullet" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bullet"]
+position = Vector2(0, -0.25)
+shape = SubResource("RectangleShape2D_u71an")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="bullet"]
+scale = Vector2(0.15, 0.15)
+
+[connection signal="area_entered" from="bullet" to="bullet" method="_on_area_entered"]
