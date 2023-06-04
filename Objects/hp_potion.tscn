@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://de0th3eanryq3"]
+
+[ext_resource type="Script" path="res://Objects/hp_potion.gd" id="1_b0tmr"]
+[ext_resource type="Texture2D" uid="uid://coxl8qhtnya2i" path="res://Textures/Items/Gems/PotionL_Red.png" id="2_de8ck"]
+[ext_resource type="AudioStream" uid="uid://bs6phjtcylu4m" path="res://Audio/SoundEffect/levelup.ogg" id="3_trlfv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hjelj"]
+radius = 5.0
+height = 14.0
+
+[node name="Hp_potion" type="Area2D"]
+script = ExtResource("1_b0tmr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_hjelj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_de8ck")
+hframes = 7
+
+[node name="hpPotion" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_trlfv")
+autoplay = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

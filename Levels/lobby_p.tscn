@@ -1,0 +1,120 @@
+[gd_scene load_steps=9 format=3 uid="uid://copxgofq0exfp"]
+
+[ext_resource type="Texture2D" uid="uid://bqsopw2n27j1n" path="res://Textures/Player/knight/knight_idle_spritesheet.png" id="1_2qhj4"]
+[ext_resource type="Script" path="res://Levels/lobby_player.gd" id="1_k6tv8"]
+[ext_resource type="Texture2D" uid="uid://bohhdt5jif68a" path="res://Textures/Player/knight/knight_run_spritesheet.png" id="2_kercp"]
+
+[sub_resource type="Animation" id="Animation_f52fl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lobby_player:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_2qhj4")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("lobby_player:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_0bbb7"]
+resource_name = "lobby_idle"
+length = 0.55
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lobby_player:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_2qhj4")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("lobby_player:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_657v6"]
+resource_name = "lobby_run"
+length = 0.55
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("lobby_player:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_kercp")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("lobby_player:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uf6si"]
+_data = {
+"RESET": SubResource("Animation_f52fl"),
+"lobby_idle": SubResource("Animation_0bbb7"),
+"lobby_run": SubResource("Animation_657v6")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_264r6"]
+size = Vector2(9, 14)
+
+[node name="lobby_p" type="CharacterBody2D"]
+position = Vector2(357, 165)
+script = ExtResource("1_k6tv8")
+
+[node name="lobby_player" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_2qhj4")
+hframes = 6
+
+[node name="Animation_Player" type="AnimationPlayer" parent="."]
+autoplay = "lobby_idle"
+libraries = {
+"": SubResource("AnimationLibrary_uf6si")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, -1)
+shape = SubResource("RectangleShape2D_264r6")
